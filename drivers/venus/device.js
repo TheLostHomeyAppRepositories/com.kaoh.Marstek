@@ -84,7 +84,10 @@ class VenusBatteryDevice extends Homey.Device {
     // Homey gives a device ONE warning slot, and the alarm code already writes
     // to it. Composed here by priority so the two cannot wipe each other.
     this._warningSources = { connectivity: null, alarm: null, config: null };
-    this._currentWarningText = null;
+    // Undefined, not null: Homey keeps a device warning across app restarts,
+    // so the first refresh must always push our state. With null, a clean
+    // start compared null to null and never cleared a stale warning.
+    this._currentWarningText = undefined;
     // How long without a single successful read before the user is told.
     this.SUSTAINED_FAILURE_MS = 300000;
     // Outage bookkeeping, purely so a diagnostic report can answer "why did it

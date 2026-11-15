@@ -99,7 +99,10 @@ class VenusDDevice extends Homey.Device {
     // off the network fails immediately and loads nothing.
     this.MAX_CONNECT_BACKOFF = 30000;
     this._warningSources = { connectivity: null, alarm: null, config: null };
-    this._currentWarningText = null;
+    // Undefined, not null: Homey keeps a device warning across app restarts,
+    // so the first refresh must always push our state. With null, a clean
+    // start compared null to null and never cleared a stale warning.
+    this._currentWarningText = undefined;
     this.SUSTAINED_FAILURE_MS = 300000;
     // Outage bookkeeping, purely so a diagnostic report can answer "why did it
     // die" without anyone having to correlate by hand. The operating mode at

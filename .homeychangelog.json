@@ -1,4 +1,7 @@
 {
+  "1.5.24": {
+    "en": "A connection warning from before an app restart no longer stays on the battery tile once the battery is answering again."
+  },
   "1.5.23": {
     "en": "Closes two ways a battery could stay on a dead connection: an unexpected error during a read round now counts towards the automatic reconnect just like a round that returned nothing, and the app no longer waits up to a quarter of an hour between attempts when a battery has been unreachable for a while. Thanks to Remi for spotting the first one in his own build."
   },
